@@ -57,6 +57,10 @@ module.exports = {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       keyframes: {
+          "text-shimmer": {
+            from: { backgroundPosition: "0 0" },
+            to: { backgroundPosition: "-200% 0" },
+          },        
         "accordion-down": {
           from: { height: 0 },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -68,6 +72,7 @@ module.exports = {
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
+        "text-shimmer": "text-shimmer 4.5s ease-out infinite alternate",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
