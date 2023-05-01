@@ -1,8 +1,8 @@
-/* eslint-disable @typescript-eslint/ban-ts-ignore */
-// @ts-ignore
+
 
 // thanks to https://github.com/javisperez/tailwindcolorshades
-
+// @ts-nocheck 
+// @ts-ignore
 import colorNamer from "color-namer";
 
 export type Palette = {
