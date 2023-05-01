@@ -1,7 +1,8 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { HexColorPicker } from "react-colorful";
 
 import useClickOutside from "../../lib/useClickOutside";
+import EditableTextField from "./editable-text-field";
 
 type ColorPickerProps = {
     color: string
@@ -11,6 +12,11 @@ type ColorPickerProps = {
 export const ColorPicker = ({ color, onChange, text }: ColorPickerProps) => {
     const popover = useRef(null);
     const [isOpen, toggle] = useState(false);
+    const [currentText, setCurrentText] = useState(color)
+    
+    useEffect(() => {
+        setCurrentText(color)
+    }, [color])
 
     const close = useCallback(() => toggle(false), []);
     useClickOutside(popover, close);
@@ -31,7 +37,8 @@ export const ColorPicker = ({ color, onChange, text }: ColorPickerProps) => {
             </div>
 
             <span className='text-black ml-3'>{text}</span>
-            <span className='text-black ml-auto'>{color}</span>
+            <EditableTextField text={currentText} setText={(update) => { setCurrentText(update); onChange(update) }} />
+
         </div>
     );
 };
