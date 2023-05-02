@@ -65,6 +65,7 @@ export default function Home() {
   const [currentMutedColor, setCurrentMutedColor] = useState('#f1f5f9')
   const [currentOpenApiKey, setCurrentOpenApiKey] = useState('')
   const [currentOpenApiModel, setCurrentOpenApiModel] = useState('gpt-3.5-turbo')
+  const [currentTheme, setCurrentTheme] = useState('light')
   const [currentCSS, setCurrentCSS] = useState(baseCSS)
 
   return (
@@ -128,20 +129,34 @@ export default function Home() {
               >Generate</Button>
             </TabsContent>
             <TabsContent className='space-y-1 flex-col' value="chatgpt">
+              <Label>ChatGPT Model</Label>
               <Select value={currentOpenApiModel} onValueChange={(e) => setCurrentOpenApiModel(e)}>
                 <SelectTrigger>
                   <SelectValue placeholder="Model" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectGroup>
-                    <SelectLabel>GPT-Model</SelectLabel>
-                    <SelectItem value="gpt-3.5-turbo">GPT 3.5 turbo</SelectItem>
-                    <SelectItem value="gpt-4">GPT 4</SelectItem>
+                    <SelectItem value="gpt-3.5-turbo">🤖 GPT 3.5 turbo</SelectItem>
+                    <SelectItem value="gpt-4">🤖 GPT 4</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
+
               <Label>OpenAPI Key</Label>
               <Input type='password' value={currentOpenApiKey} onChange={(e) => setCurrentOpenApiKey(e.target.value)} />
+
+              <Label>Theme</Label>
+              <Select value={currentTheme} onValueChange={(e) => setCurrentTheme(e)}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Theme" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectItem value="light">🎨 Light</SelectItem>
+                    <SelectItem value="dark">🎨 Dark</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
               <ColorPicker text='Primary' color={currentPrimaryColor} onChange={setCurrentPrimaryColor} />
               <ColorPicker text='Foreground' color={currentForegroundColor} onChange={setCurrentForegroundColor} />
               <ColorPicker text='Secondary' color={currentSecondaryColor} onChange={setCurrentSecondaryColor} />
@@ -166,7 +181,7 @@ export default function Home() {
                         messages: [
                           {
                             "role": "user",
-                            "content": `You will generate a beautiful light mode color palette for me and return it as json. Do not return anything else. ONLY the json. Colors need to be in hex format like --muted: #ffffff. Pick colors that you think that match beautifully with each other.Here are the possible values background, foreground, secondary, accent, muted, primary, destructive`
+                            "content": `You will generate a beautiful relaxing color palette ${currentTheme === 'light' ? 'with a light background' : 'with a dark background'} for me and return it as json. Do not return anything else. ONLY the json. Colors need to be in hex format like --muted: #ffffff. Pick colors that you think that match beautifully with each other.Here are the possible values background, foreground, secondary, accent, muted, primary, destructive`
                           }
                         ]
                       }),
