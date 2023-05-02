@@ -370,13 +370,15 @@ export default function Home() {
         <div className='container'>
           <div className='mt-44 text-center'>
             <span>Generated CSS</span>
-            <CopyBlock
-              text={currentCSS}
-              codeBlock
-              language={'css'}
-              theme={dracula}
-              wrapLines
-            />
+            <div className='text-left'>
+              <CopyBlock
+                text={currentCSS}
+                codeBlock
+                language={'css'}
+                theme={dracula}
+                wrapLines
+              />
+            </div>
           </div>
         </div>
       </main >
